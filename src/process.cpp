@@ -1,3 +1,4 @@
+/* Copyright */
 #include "process.h"
 
 #include <unistd.h>

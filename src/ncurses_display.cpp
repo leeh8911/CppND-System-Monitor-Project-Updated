@@ -1,3 +1,4 @@
+/* Copyright */
 #include "ncurses_display.h"
 
 #include <curses.h>

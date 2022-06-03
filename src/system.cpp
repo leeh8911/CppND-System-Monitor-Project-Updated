@@ -1,3 +1,4 @@
+/* Copyright */
 #include "system.h"
 
 #include <unistd.h>

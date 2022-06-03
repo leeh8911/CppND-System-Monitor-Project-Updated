@@ -1,3 +1,4 @@
+/* Copyright */
 #ifndef NCURSES_DISPLAY_H
 #define NCURSES_DISPLAY_H
 

@@ -1,3 +1,4 @@
+/* Copyright */
 #include "processor.h"
 
 // TODO: Return the aggregate CPU utilization

@@ -1,3 +1,4 @@
+/* Copyright */
 #include "format.h"
 
 #include <string>

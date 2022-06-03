@@ -1,3 +1,4 @@
+/* Copyright */
 #include "linux_parser.h"
 
 #include <dirent.h>
