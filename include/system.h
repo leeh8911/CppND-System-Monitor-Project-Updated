@@ -19,6 +19,7 @@ class System {
   std::string Kernel();               // TODO(@sangwon): See src/system.cpp
   std::string OperatingSystem();      // TODO(@sangwon): See src/system.cpp
 
+  System();
   // TODO(@sangwon): Define any necessary private members
  private:
   Processor cpu_ = {};
