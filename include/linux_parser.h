@@ -21,10 +21,10 @@ const std::string kPasswordPath{"/etc/passwd"};
 
 // System
 float MemoryUtilization();
-long UpTime();
+int16_t UpTime();
 std::vector<int> Pids();
-int TotalProcesses();
-int RunningProcesses();
+int16_t TotalProcesses();
+int16_t RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
 
@@ -42,17 +42,17 @@ enum CPUStates {
   kGuestNice_
 };
 std::vector<std::string> CpuUtilization();
-long Jiffies();
-long ActiveJiffies();
-long ActiveJiffies(int pid);
-long IdleJiffies();
+int16_t Jiffies();
+int16_t ActiveJiffies();
+int16_t ActiveJiffies(int16_t pid);
+int16_t IdleJiffies();
 
 // Processes
-std::string Command(int pid);
-std::string Ram(int pid);
-std::string Uid(int pid);
-std::string User(int pid);
-long int UpTime(int pid);
+std::string Command(int16_t pid);
+std::string Ram(int16_t pid);
+std::string Uid(int16_t pid);
+std::string User(int16_t pid);
+int16_t UpTime(int16_t pid);
 };  // namespace LinuxParser
 
 #endif

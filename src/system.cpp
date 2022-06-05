@@ -34,12 +34,12 @@ float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }
 std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
 
 // TODO(@sangwon): Return the number of processes actively running on the system
-int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
+int16_t System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
 
 // TODO(@sangwon): Return the total number of processes on the system
-int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
+int16_t System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO(@sangwon): Return the number of seconds since the system started running
-long int System::UpTime() { return static_cast<long int>(LinuxParser::UpTime()); }
+int16_t System::UpTime() { return static_cast<int16_t>(LinuxParser::UpTime()); }
 
 System::System() {}
