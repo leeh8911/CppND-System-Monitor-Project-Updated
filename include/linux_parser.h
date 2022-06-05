@@ -1,6 +1,6 @@
 /* Copyright */
-#ifndef SYSTEM_PARSER_H
-#define SYSTEM_PARSER_H
+#ifndef INCLUDE_LINUX_PARSER_H_
+#define INCLUDE_LINUX_PARSER_H_
 
 #include <fstream>
 #include <regex>
@@ -55,4 +55,4 @@ std::string User(int16_t pid);
 int16_t UpTime(int16_t pid);
 };  // namespace LinuxParser
 
-#endif
+#endif //INCLUDE_LINUX_PARSER_H_
