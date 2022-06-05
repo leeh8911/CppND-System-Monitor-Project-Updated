@@ -4,8 +4,8 @@
 
 #include <curses.h>
 
-#include "process.h"
-#include "system.h"
+#include "./process.h"
+#include "./system.h"
 
 namespace NCursesDisplay {
 void Display(System& system, int n = 10);

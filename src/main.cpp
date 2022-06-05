@@ -1,6 +1,6 @@
 /* Copyright */
-#include "ncurses_display.h"
-#include "system.h"
+#include "include/ncurses_display.h"
+#include "include/system.h"
 
 int main() {
   System system;

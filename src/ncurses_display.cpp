@@ -1,5 +1,5 @@
 /* Copyright */
-#include "ncurses_display.h"
+#include "include/ncurses_display.h"
 
 #include <curses.h>
 
@@ -8,8 +8,8 @@
 #include <thread>
 #include <vector>
 
-#include "format.h"
-#include "system.h"
+#include "include/format.h"
+#include "include/system.h"
 
 using std::string;
 using std::to_string;
