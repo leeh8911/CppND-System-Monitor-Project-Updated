@@ -5,11 +5,13 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <limits>
 #include <string>
 #include <vector>
 
+using std::numeric_limits;
 using std::stof;
-using std::stoi;
+using std::stoul;
 using std::string;
 using std::to_string;
 using std::vector;
@@ -115,7 +117,7 @@ float LinuxParser::MemoryUtilization() {
 }
 
 // TODO(@sangwon): Read and return the system uptime
-int16_t LinuxParser::UpTime() {
+int32_t LinuxParser::UpTime() {
   string uptime, idle_uptime;
   string line;
   std::ifstream stream(kProcDirectory + kUptimeFilename);
@@ -123,9 +125,14 @@ int16_t LinuxParser::UpTime() {
     std::getline(stream, line);
     std::istringstream linestream(line);
     linestream >> uptime >> idle_uptime;
-    }
+  }
 
-  return static_cast<int16_t>(stof(uptime));
+  uint32_t uptime_buffer = stoul(uptime);
+  uptime_buffer =
+      uptime_buffer < static_cast<uint32_t>(numeric_limits<int32_t>::max())
+          ? uptime_buffer
+          : std::numeric_limits<int16_t>::max();
+  return static_cast<int32_t>(uptime_buffer);
 }
 
 // TODO(@sangwon): Read and return the number of jiffies for the system
@@ -145,7 +152,7 @@ int16_t LinuxParser::IdleJiffies() { return 0; }
 vector<string> LinuxParser::CpuUtilization() { return {}; }
 
 // TODO(@sangwon): Read and return the total number of processes
-int16_t LinuxParser::TotalProcesses() { 
+int16_t LinuxParser::TotalProcesses() {
   string line;
   string key;
   string value;
@@ -165,10 +172,10 @@ int16_t LinuxParser::TotalProcesses() {
   }
 
   return 0;
-  }
+}
 
 // TODO(@sangwon): Read and return the number of running processes
-int16_t LinuxParser::RunningProcesses() { 
+int16_t LinuxParser::RunningProcesses() {
   string line;
   string key;
   string value;
@@ -187,7 +194,8 @@ int16_t LinuxParser::RunningProcesses() {
     }
   }
 
-  return 0; }
+  return 0;
+}
 
 // TODO(@sangwon): Read and return the command associated with a process
 // REMOVE: [[maybe_unused]] once you define the function

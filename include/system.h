@@ -13,9 +13,9 @@ class System {
   Processor& Cpu();                   // TODO(@sangwon): See src/system.cpp
   std::vector<Process>& Processes();  // TODO(@sangwon): See src/system.cpp
   float MemoryUtilization();          // TODO(@sangwon): See src/system.cpp
-  int16_t UpTime();                      // TODO(@sangwon): See src/system.cpp
-  int16_t TotalProcesses();               // TODO(@sangwon): See src/system.cpp
-  int16_t RunningProcesses();             // TODO(@sangwon): See src/system.cpp
+  int32_t UpTime();                   // TODO(@sangwon): See src/system.cpp
+  int16_t TotalProcesses();           // TODO(@sangwon): See src/system.cpp
+  int16_t RunningProcesses();         // TODO(@sangwon): See src/system.cpp
   std::string Kernel();               // TODO(@sangwon): See src/system.cpp
   std::string OperatingSystem();      // TODO(@sangwon): See src/system.cpp
 

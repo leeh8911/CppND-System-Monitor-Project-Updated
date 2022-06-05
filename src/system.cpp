@@ -4,10 +4,10 @@
 #include <unistd.h>
 
 #include <cstddef>
+#include <iostream>
 #include <set>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "include/linux_parser.h"
 #include "include/process.h"
@@ -40,6 +40,6 @@ int16_t System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
 int16_t System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO(@sangwon): Return the number of seconds since the system started running
-int16_t System::UpTime() { return static_cast<int16_t>(LinuxParser::UpTime()); }
+int32_t System::UpTime() { return LinuxParser::UpTime(); }
 
 System::System() {}
