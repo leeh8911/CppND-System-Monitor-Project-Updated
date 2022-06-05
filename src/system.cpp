@@ -7,6 +7,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "include/linux_parser.h"
 #include "include/process.h"
@@ -39,6 +40,6 @@ int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
 int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO(@sangwon): Return the number of seconds since the system started running
-long int System::UpTime() { return 0; }
+long int System::UpTime() { return static_cast<long int>(LinuxParser::UpTime()); }
 
 System::System() {}
