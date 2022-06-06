@@ -11,6 +11,7 @@
 
 using std::numeric_limits;
 using std::stof;
+using std::stoi;
 using std::stoul;
 using std::string;
 using std::to_string;
@@ -145,18 +146,29 @@ int16_t LinuxParser::IdleJiffies() { return 0; }
 
 // TODO(@sangwon): Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() {
-  vector<string> res;
+  vector<string> jiffies;
+  vector<int16_t> params;
   string line;
   string key;
-  string value;
 
+  int16_t idle = 0;
+  int16_t active = 0;
+  float util = 0.f;
   std::ifstream filestream(kProcDirectory + kStatFilename);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
       std::istringstream linestream(line);
+      linestream >> key;
+      while (linestream >> key) {
+        params.emplace_back(stoi(key));
+      }
+      idle = params[3] + params[4];
+      active = params[0] + params[1] + params[4] + params[6] + params[7];
+      util = active / static_cast<float>(idle + active);
+      jiffies.emplace_back(to_string(util));
     }
   }
-  return res;
+  return jiffies;
 }
 
 int16_t LinuxParser::TotalProcesses() {
