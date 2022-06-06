@@ -8,5 +8,5 @@
 using std::stof;
 
 float Processor::Utilization() {
-  return stof(LinuxParser::CpuUtilization()[0]);
+    return stof(LinuxParser::CpuUtilization()[0]);
 }

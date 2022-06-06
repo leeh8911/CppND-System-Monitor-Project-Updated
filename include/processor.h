@@ -3,10 +3,10 @@
 #define PROCESSOR_H
 
 class Processor {
- public:
-  float Utilization();
+   public:
+    float Utilization();
 
- private:
+   private:
 };
 
 #endif

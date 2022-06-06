@@ -19,7 +19,7 @@ Process::Process(int16_t pid) : pid_(pid) {}
 int16_t Process::Pid() const { return pid_; }
 
 float Process::CpuUtilization() const {
-  return LinuxParser::CpuUtilization(Pid());
+    return LinuxParser::CpuUtilization(Pid());
 }
 
 string Process::Command() { return LinuxParser::Command(Pid()); }
@@ -31,5 +31,5 @@ string Process::User() { return LinuxParser::User(Pid()); }
 int32_t Process::UpTime() { return LinuxParser::UpTime(Pid()); }
 
 bool Process::operator<(Process const& a) const {
-  return a.CpuUtilization() < CpuUtilization();
+    return a.CpuUtilization() < CpuUtilization();
 }
