@@ -16,10 +16,8 @@ using std::vector;
 
 Process::Process(int16_t pid) : pid_(pid) {}
 
-// TODO(@sangwon): Return this process's ID
 int16_t Process::Pid() const { return pid_; }
 
-// TODO(@sangwon): Return this process's CPU utilization
 float Process::CpuUtilization() const {
   return LinuxParser::CpuUtilization(Pid());
 }
