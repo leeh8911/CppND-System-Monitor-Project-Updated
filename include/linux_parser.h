@@ -8,8 +8,8 @@
 #include <vector>
 
 namespace LinuxParser {
-using std::vector;
 using std::string;
+using std::vector;
 
 // Paths
 const string kProcDirectory{"/proc/"};

@@ -9,7 +9,7 @@ It contains relevant attributes as shown below
 */
 class Process {
  public:
-  Process(int16_t pid) : pid_(pid);
+  Process(int16_t pid) : pid_(pid){};
   int16_t Pid() const;
   std::string User();      // TODO(@sangwon): See src/process.cpp
   std::string Command();   // TODO(@sangwon): See src/process.cpp
@@ -21,7 +21,7 @@ class Process {
 
   // TODO(@sangwon): Declare any necessary private members
  private:
- int16_t pid_;
+  int16_t pid_;
 };
 
 #endif
