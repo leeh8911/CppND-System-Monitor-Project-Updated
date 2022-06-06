@@ -4,9 +4,8 @@
 
 class Processor {
  public:
-  float Utilization();  // TODO(@sangwon): See src/processor.cpp
+  float Utilization();
 
-  // TODO(@sangwon): Declare any necessary private members
  private:
 };
 

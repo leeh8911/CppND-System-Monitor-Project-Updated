@@ -100,7 +100,7 @@ float LinuxParser::MemoryUtilization() {
           mem_cached = stof(value);
         } else if (key == "SReclaimable") {
           mem_sreclaimable = stof(value);
-        } else if (key == "mem_shmem") {
+        } else if (key == "Shmem") {
           mem_shmem = stof(value);
         } else {
           // Do Nothing
@@ -132,20 +132,14 @@ int32_t LinuxParser::UpTime() {
   return static_cast<int32_t>(uptime_buffer);
 }
 
-// TODO(@sangwon): Read and return the number of jiffies for the system
 int16_t LinuxParser::Jiffies() { return 0; }
 
-// TODO(@sangwon): Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
 int16_t LinuxParser::ActiveJiffies(int16_t pid [[maybe_unused]]) { return 0; }
 
-// TODO(@sangwon): Read and return the number of active jiffies for the system
 int16_t LinuxParser::ActiveJiffies() { return 0; }
 
-// TODO(@sangwon): Read and return the number of idle jiffies for the system
 int16_t LinuxParser::IdleJiffies() { return 0; }
 
-// TODO(@sangwon): Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() {
   vector<string> jiffies;
   vector<int16_t> params;
@@ -243,8 +237,6 @@ int16_t LinuxParser::RunningProcesses() {
   return 0;
 }
 
-// TODO(@sangwon): Read and return the command associated with a process
-// REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Command(int16_t pid) {
   string line;
   std::ifstream filestream(kProcDirectory + to_string(pid) + kCmdlineFilename);
@@ -254,8 +246,6 @@ string LinuxParser::Command(int16_t pid) {
   return line;
 }
 
-// TODO(@sangwon): Read and return the memory used by a process
-// REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Ram(int16_t pid) {
   string line;
   string key;
@@ -294,8 +284,6 @@ string LinuxParser::Uid(int16_t pid) {
   return uid;
 }
 
-// TODO(@sangwon): Read and return the user associated with a process
-// REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::User(int16_t pid) {
   string line;
   string user, pw, uid;
@@ -315,14 +303,12 @@ string LinuxParser::User(int16_t pid) {
   return user;
 }
 
-// TODO(@sangwon): Read and return the uptime of a process
-// REMOVE: [[maybe_unused]] once you define the function
 int16_t LinuxParser::UpTime(int16_t pid) {
   string line;
   string value;
   vector<string> states;
 
-  std::ifstream filestream(kProcDirectory + to_string(pid) + kStatusFilename);
+  std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
   if (filestream.is_open()) {
     std::getline(filestream, line);
     std::istringstream linestream(line);

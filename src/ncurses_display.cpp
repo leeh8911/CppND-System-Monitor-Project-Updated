@@ -18,10 +18,10 @@ using std::to_string;
 // 2% is one bar(|)
 std::string NCursesDisplay::ProgressBar(float percent) {
   std::string result{"0%"};
-  int size{50};
+  int16_t size{50};
   float bars{percent * size};
 
-  for (int i{0}; i < size; ++i) {
+  for (int16_t i{0}; i < size; ++i) {
     result += i <= bars ? '|' : ' ';
   }
 
@@ -56,14 +56,14 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
 }
 
 void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
-                                      WINDOW* window, int n) {
-  int row{0};
-  int const pid_column{2};
-  int const user_column{9};
-  int const cpu_column{16};
-  int const ram_column{26};
-  int const time_column{35};
-  int const command_column{46};
+                                      WINDOW* window, int16_t n) {
+  int16_t row{0};
+  int16_t const pid_column{2};
+  int16_t const user_column{9};
+  int16_t const cpu_column{16};
+  int16_t const ram_column{26};
+  int16_t const time_column{35};
+  int16_t const command_column{46};
   wattron(window, COLOR_PAIR(2));
   mvwprintw(window, ++row, pid_column, "PID");
   mvwprintw(window, row, user_column, "USER");
@@ -72,8 +72,9 @@ void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
   mvwprintw(window, row, time_column, "TIME+");
   mvwprintw(window, row, command_column, "COMMAND");
   wattroff(window, COLOR_PAIR(2));
-  int const num_processes = int(processes.size()) > n ? n : processes.size();
-  for (int i = 0; i < num_processes; ++i) {
+  int16_t const num_processes =
+      int16_t(processes.size()) > n ? n : processes.size();
+  for (int16_t i = 0; i < num_processes; ++i) {
     mvwprintw(window, ++row, pid_column, to_string(processes[i].Pid()).c_str());
     mvwprintw(window, row, user_column, processes[i].User().c_str());
     float cpu = processes[i].CpuUtilization() * 100;
@@ -86,13 +87,13 @@ void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
   }
 }
 
-void NCursesDisplay::Display(System& system, int n) {
+void NCursesDisplay::Display(System& system, int16_t n) {
   initscr();      // start ncurses
   noecho();       // do not print input values
   cbreak();       // terminate ncurses on ctrl + c
   start_color();  // enable color
 
-  int x_max{getmaxx(stdscr)};
+  int16_t x_max{getmaxx(stdscr)};
   WINDOW* system_window = newwin(9, x_max - 1, 0, 0);
   WINDOW* process_window =
       newwin(3 + n, x_max - 1, system_window->_maxy + 1, 0);

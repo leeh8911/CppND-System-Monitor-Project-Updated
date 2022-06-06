@@ -1,6 +1,6 @@
 /* Copyright */
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef INCLUDE_PROCESS_H_
+#define INCLUDE_PROCESS_H_
 
 #include <string>
 /*
@@ -12,17 +12,15 @@ class Process {
   Process(int16_t pid);
 
   int16_t Pid() const;
-  std::string User();      // TODO(@sangwon): See src/process.cpp
-  std::string Command();   // TODO(@sangwon): See src/process.cpp
-  float CpuUtilization() const;  // TODO(@sangwon): See src/process.cpp
-  std::string Ram();       // TODO(@sangwon): See src/process.cpp
-  int32_t UpTime();       // TODO(@sangwon): See src/process.cpp
-  bool operator<(
-      Process const& a) const;  // TODO(@sangwon): See src/process.cpp
+  std::string User();
+  std::string Command();
+  float CpuUtilization() const;
+  std::string Ram();
+  int32_t UpTime();
+  bool operator<(Process const& a) const;
 
-  // TODO(@sangwon): Declare any necessary private members
  private:
   int16_t pid_;
 };
 
-#endif
+#endif  // INCLUDE_PROCESS_H_
