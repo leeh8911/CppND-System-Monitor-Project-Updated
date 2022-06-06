@@ -22,7 +22,16 @@ using std::vector;
 Processor& System::Cpu() { return cpu_; }
 
 // TODO(@sangwon): Return a container composed of the system's processes
-vector<Process>& System::Processes() { return processes_; }
+vector<Process>& System::Processes() {
+  vector<int16_t> pids = LinuxParser::Pids();
+  processes_ = {};
+
+  for (auto pid : pids) {
+    processes_.emplace_back(Process(pid));
+  }
+  std::sort(processes_.begin(), processes_.end());
+  return processes_;
+}
 
 // TODO(@sangwon): Return the system's kernel identifier (string)
 std::string System::Kernel() { return LinuxParser::Kernel(); }

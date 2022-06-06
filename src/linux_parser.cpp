@@ -52,8 +52,8 @@ string LinuxParser::Kernel() {
   return kernel;
 }
 
-vector<int> LinuxParser::Pids() {
-  vector<int> pids;
+vector<int16_t> LinuxParser::Pids() {
+  vector<int16_t> pids;
   DIR* directory = opendir(kProcDirectory.c_str());
   struct dirent* file;
   while ((file = readdir(directory)) != nullptr) {
@@ -62,7 +62,7 @@ vector<int> LinuxParser::Pids() {
       // Is every character of the name a digit?
       string filename(file->d_name);
       if (std::all_of(filename.begin(), filename.end(), isdigit)) {
-        int pid = stoi(filename);
+        int16_t pid = stoi(filename);
         pids.push_back(pid);
       }
     }
@@ -170,6 +170,33 @@ vector<string> LinuxParser::CpuUtilization() {
     }
   }
   return jiffies;
+}
+
+float LinuxParser::CpuUtilization(int16_t pid) {
+  string line;
+  vector<string> columns;
+  string column;
+
+  std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
+  if (filestream.is_open()) {
+    std::getline(filestream, line);
+    std::istringstream linestream(line);
+    while (linestream.good()) {
+      std::getline(linestream, column, ' ');
+      columns.emplace_back(column);
+    }
+  }
+  int total_process_ticks = 0;
+  for (auto idx : {13, 14, 15, 16}) {
+    total_process_ticks += stoi(columns[idx]);
+  }
+  float total_process_time =
+      total_process_ticks / static_cast<float>(sysconf(_SC_CLK_TCK));
+  int16_t total_seconds = UpTime() + UpTime(pid);
+
+  return total_seconds != 0
+             ? (total_process_time / static_cast<float>(total_seconds))
+             : 0.0;
 }
 
 int16_t LinuxParser::TotalProcesses() {

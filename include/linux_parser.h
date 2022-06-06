@@ -26,7 +26,7 @@ const string kPasswordPath{"/etc/passwd"};
 // System
 float MemoryUtilization();
 int32_t UpTime();
-vector<int> Pids();
+vector<int16_t> Pids();
 int16_t TotalProcesses();
 int16_t RunningProcesses();
 string OperatingSystem();
@@ -46,6 +46,7 @@ enum CPUStates {
   kGuestNice_
 };
 vector<string> CpuUtilization();
+float CpuUtilization(int16_t pid);
 int16_t Jiffies();
 int16_t ActiveJiffies();
 int16_t ActiveJiffies(int16_t pid);
