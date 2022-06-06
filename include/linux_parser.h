@@ -55,4 +55,4 @@ std::string User(int16_t pid);
 int16_t UpTime(int16_t pid);
 };  // namespace LinuxParser
 
-#endif //INCLUDE_LINUX_PARSER_H_
+#endif  // INCLUDE_LINUX_PARSER_H_

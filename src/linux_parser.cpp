@@ -16,7 +16,6 @@ using std::string;
 using std::to_string;
 using std::vector;
 
-// DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
   string line;
   string key;
@@ -39,7 +38,6 @@ string LinuxParser::OperatingSystem() {
   return value;
 }
 
-// DONE: An example of how to read data from the filesystem
 string LinuxParser::Kernel() {
   string os, version, kernel;
   string line;
@@ -52,7 +50,6 @@ string LinuxParser::Kernel() {
   return kernel;
 }
 
-// BONUS: Update this to use std::filesystem
 vector<int> LinuxParser::Pids() {
   vector<int> pids;
   DIR* directory = opendir(kProcDirectory.c_str());
@@ -72,7 +69,6 @@ vector<int> LinuxParser::Pids() {
   return pids;
 }
 
-// TODO(@sangwon): Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() {
   string line;
   string key;
@@ -116,7 +112,6 @@ float LinuxParser::MemoryUtilization() {
          mem_total;
 }
 
-// TODO(@sangwon): Read and return the system uptime
 int32_t LinuxParser::UpTime() {
   string uptime, idle_uptime;
   string line;
@@ -149,9 +144,21 @@ int16_t LinuxParser::ActiveJiffies() { return 0; }
 int16_t LinuxParser::IdleJiffies() { return 0; }
 
 // TODO(@sangwon): Read and return CPU utilization
-vector<string> LinuxParser::CpuUtilization() { return {}; }
+vector<string> LinuxParser::CpuUtilization() {
+  vector<string> res;
+  string line;
+  string key;
+  string value;
 
-// TODO(@sangwon): Read and return the total number of processes
+  std::ifstream filestream(kProcDirectory + kStatFilename);
+  if (filestream.is_open()) {
+    while (std::getline(filestream, line)) {
+      std::istringstream linestream(line);
+    }
+  }
+  return res;
+}
+
 int16_t LinuxParser::TotalProcesses() {
   string line;
   string key;
@@ -174,7 +181,6 @@ int16_t LinuxParser::TotalProcesses() {
   return 0;
 }
 
-// TODO(@sangwon): Read and return the number of running processes
 int16_t LinuxParser::RunningProcesses() {
   string line;
   string key;
