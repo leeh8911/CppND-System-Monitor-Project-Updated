@@ -5,28 +5,32 @@
 #include <fstream>
 #include <regex>
 #include <string>
+#include <vector>
 
 namespace LinuxParser {
+using std::vector;
+using std::string;
+
 // Paths
-const std::string kProcDirectory{"/proc/"};
-const std::string kCmdlineFilename{"/cmdline"};
-const std::string kCpuinfoFilename{"/cpuinfo"};
-const std::string kStatusFilename{"/status"};
-const std::string kStatFilename{"/stat"};
-const std::string kUptimeFilename{"/uptime"};
-const std::string kMeminfoFilename{"/meminfo"};
-const std::string kVersionFilename{"/version"};
-const std::string kOSPath{"/etc/os-release"};
-const std::string kPasswordPath{"/etc/passwd"};
+const string kProcDirectory{"/proc/"};
+const string kCmdlineFilename{"/cmdline"};
+const string kCpuinfoFilename{"/cpuinfo"};
+const string kStatusFilename{"/status"};
+const string kStatFilename{"/stat"};
+const string kUptimeFilename{"/uptime"};
+const string kMeminfoFilename{"/meminfo"};
+const string kVersionFilename{"/version"};
+const string kOSPath{"/etc/os-release"};
+const string kPasswordPath{"/etc/passwd"};
 
 // System
 float MemoryUtilization();
 int32_t UpTime();
-std::vector<int> Pids();
+vector<int> Pids();
 int16_t TotalProcesses();
 int16_t RunningProcesses();
-std::string OperatingSystem();
-std::string Kernel();
+string OperatingSystem();
+string Kernel();
 
 // CPU
 enum CPUStates {
@@ -41,17 +45,17 @@ enum CPUStates {
   kGuest_,
   kGuestNice_
 };
-std::vector<std::string> CpuUtilization();
+vector<string> CpuUtilization();
 int16_t Jiffies();
 int16_t ActiveJiffies();
 int16_t ActiveJiffies(int16_t pid);
 int16_t IdleJiffies();
 
 // Processes
-std::string Command(int16_t pid);
-std::string Ram(int16_t pid);
-std::string Uid(int16_t pid);
-std::string User(int16_t pid);
+string Command(int16_t pid);
+string Ram(int16_t pid);
+string Uid(int16_t pid);
+string User(int16_t pid);
 int16_t UpTime(int16_t pid);
 };  // namespace LinuxParser
 
